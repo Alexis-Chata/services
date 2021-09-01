@@ -1,0 +1,76 @@
+﻿
+
+function ChangeBackColor(objetoId, color) {
+    var obj = document.getElementById(objetoId);
+    obj.style.backgroundColor = color;
+}
+function ChangeFontColor(objetoId, color) {
+    var obj = document.getElementById(objetoId);
+    obj.style.color = color;
+}
+
+function MiCuentaLyBtns(childobjtag, objactivoid, backcoloractivo, backcolorinactivo, colorfuenteactivo, colorfuenteinactivo, radioactivo, radioinactivo) {
+    var obj = document.getElementById(objactivoid);
+    var parobj = obj.parentNode.parentElement;
+    var objs = parobj.getElementsByClassName(childobjtag);
+    for (let i = 0; i < objs.length; i++) {
+        var o1 = document.getElementById("BtbVacio1");
+        var o2 = document.getElementById("BtbVacio2");
+        //o1.style.borderTopRightRadius = "0px";
+        //o1.style.borderBottomRightRadius = "0px";
+        //o2.style.borderTopRightRadius = "0px";
+        //o2.style.borderBottomRightRadius = "0px";
+        if (objs[i].id == objactivoid) {
+            objs[i].style.backgroundColor = backcoloractivo;
+            objs[i].style.color = "black";
+            //objs[i].style.borderTopLeftRadius = "10px";
+            //objs[i].style.borderBottomLeftRadius = "10px";
+            //objs[i].style.borderTopRightRadius = "0px";
+            //objs[i].style.borderBottomRightRadius = "0px";
+        }
+        else {
+            var objant; var objsig;
+            if (i == 0)
+            {
+                objant = o1;
+                objsig = objs[i + 1];
+            }
+            else if (i == objs.length - 1) {
+                objant = objs[i - 1];
+                objsig = o2;
+            }
+            else {
+                objant = objs[i - 1];
+                objsig = objs[i + 1];
+            }
+            //alert(objs[i].id)
+            objs[i].style.backgroundColor = backcolorinactivo;
+            objs[i].style.color = "white";
+            //objs[i].style.borderTopLeftRadius = "0px";
+            //objs[i].style.borderBottomLeftRadius = "0px";
+            //objant.style.borderBottomRightRadius = "10px";
+            //objsig.style.borderTopRightRadius = "10px";
+
+        }
+    }
+    Array.prototype.forEach.call(objs, obj => {
+        
+    });
+
+}
+//function saveAsFile(Filename, byteBase) {
+//    var link = document.createElement('a');
+//    link.download = Filename;
+//    link.href = 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64' + byteBase;
+//    document.body.appendChild(link);
+//    link.click();
+//    document.body.remove(link);
+//}
+function saveAsFile(filename, bytesBase64) {
+    var link = document.createElement('a');
+    link.download = filename;
+    link.href = "data:application/octet-stream;base64," + bytesBase64;
+    document.body.appendChild(link); // Needed for Firefox
+    link.click();
+    document.body.removeChild(link);
+}

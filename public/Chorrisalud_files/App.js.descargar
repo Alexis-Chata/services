@@ -1,0 +1,9 @@
+export function MenuNav(nav, btn) {
+    btn.onclick = () => {
+        nav.classList.toggle("show");
+        // nav.classList.add("hidding");
+        // setTimeout(() => {
+        //     nav.classList.remove("hidding");
+        // }, 800);
+    };
+}
